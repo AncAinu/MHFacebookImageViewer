@@ -534,6 +534,15 @@ static const CGFloat kMinImageScale = 1.0f;
     _doneButton.frame = CGRectMake(windowBounds.size.width - (51.0f + 9.0f),15.0f, 51.0f, 26.0f);
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+	CGFloat width = scrollView.frame.size.width;
+	NSInteger page = (targetContentOffset->y + (0.5f * width)) / width;
+	
+	if ([_imageDatasource respondsToSelector:@selector(viewerWillShowImageAtIndex:)]) {
+		[_imageDatasource viewerWillShowImageAtIndex:page];
+	}
+}
+
 #pragma mark - Show
 - (void)presentFromRootViewController
 {

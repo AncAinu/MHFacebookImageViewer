@@ -35,6 +35,8 @@ typedef void (^MHFacebookImageViewerClosingBlock)(void);
 - (NSInteger) numberImagesForImageViewer:(MHFacebookImageViewer*) imageViewer;
 - (NSURL*) imageURLAtIndex:(NSInteger)index imageViewer:(MHFacebookImageViewer*) imageViewer;
 - (UIImage*) imageDefaultAtIndex:(NSInteger)index imageViewer:(MHFacebookImageViewer*) imageViewer;
+@optional
+- (void)viewerWillShowImageAtIndex:(NSInteger)index;
 @end
 
 @interface MHFacebookImageViewer : UIViewController
