@@ -36,6 +36,7 @@ typedef void (^MHFacebookImageViewerClosingBlock)(void);
 - (NSURL*) imageURLAtIndex:(NSInteger)index imageViewer:(MHFacebookImageViewer*) imageViewer;
 - (UIImage*) imageDefaultAtIndex:(NSInteger)index imageViewer:(MHFacebookImageViewer*) imageViewer;
 @optional
+- (BOOL)viewerShouldDismissToOriginalPositionForIndex:(NSInteger)index;
 - (void)viewerWillShowImageAtIndex:(NSInteger)index;
 @end
 

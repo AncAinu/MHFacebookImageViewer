@@ -42,7 +42,7 @@ static const CGFloat kMinImageScale = 1.0f;
 
 @property(nonatomic,assign) CGRect originalFrameRelativeToScreen;
 @property(nonatomic,weak) UIViewController * rootViewController;
-@property(nonatomic,weak) UIViewController * viewController;
+@property(nonatomic,weak) MHFacebookImageViewer * viewController;
 @property(nonatomic,weak) UIView * blackMask;
 @property(nonatomic,weak) UIButton * doneButton;
 @property(nonatomic,weak) UIImageView * senderView;
@@ -236,8 +236,10 @@ static const CGFloat kMinImageScale = 1.0f;
         CGFloat screenHeight =  [[UIScreen mainScreen] bounds].size.height;
         CGFloat imageYCenterPosition = __imageView.frame.origin.y + __imageView.frame.size.height/2 ;
         BOOL isGoingUp =  imageYCenterPosition < screenHeight/2;
-        [UIView animateWithDuration:0.4f delay:0.0f options:0 animations:^{
-            if(_imageIndex==_initialIndex){
+		[UIView animateWithDuration:0.4f delay:0.0f options:0 animations:^{
+			if (_imageIndex==_initialIndex
+				|| ([self.viewController.imageDatasource respondsToSelector:@selector(viewerShouldDismissToOriginalPositionForIndex:)]
+					&& [self.viewController.imageDatasource viewerShouldDismissToOriginalPositionForIndex:_imageIndex])) {
                 __imageView.frame = _originalFrameRelativeToScreen;
             }else {
                 __imageView.frame = CGRectMake(__imageView.frame.origin.x, isGoingUp?-screenHeight:screenHeight, __imageView.frame.size.width, __imageView.frame.size.height);
