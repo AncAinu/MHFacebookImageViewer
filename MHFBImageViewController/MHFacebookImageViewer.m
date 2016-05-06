@@ -349,15 +349,7 @@ static const CGFloat kMinImageScale = 1.0f;
     }else {
         if(__scrollView.zoomScale == __scrollView.minimumZoomScale){
             if(!_isDoneAnimating){
-                _isDoneAnimating = YES;
-                [self.viewController.view addSubview:_doneButton];
-                _doneButton.alpha = 0.0f;
-                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                    _doneButton.alpha = 1.0f;
-                } completion:^(BOOL finished) {
-                    [self.viewController.view bringSubviewToFront:_doneButton];
-                    _isDoneAnimating = NO;
-                }];
+				[self dismissViewController];
             }
         }else if(__scrollView.zoomScale == __scrollView.maximumZoomScale) {
             CGPoint pointInView = [recognizer locationInView:__imageView];
