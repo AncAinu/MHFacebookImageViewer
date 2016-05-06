@@ -203,7 +203,7 @@ static const CGFloat kMinImageScale = 1.0f;
 
     if ((panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateCancelled) && __scrollView.zoomScale == 1.0f) {
 
-        if(_blackMask.alpha < 0.85f) {
+        if(_blackMask.alpha < 0.80f) {
             [self dismissViewController];
         }else {
             [self rollbackViewController];
